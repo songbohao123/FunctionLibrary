@@ -3,6 +3,7 @@ package com.example.gittestdemo.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +16,19 @@ import java.util.List;
 
 public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder> {
     private final List<String> titles;
+
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    private static OnItemClickListener mListener;
+
+    // 设置监听方法
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mListener = listener;
+    }
+
 
     public MainRecyclerViewAdapter(List<String> titles) {
         this.titles = titles;
@@ -64,6 +78,14 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
             super(itemView);
             title = itemView.findViewById(R.id.main_title_text);
             icon = itemView.findViewById(R.id.im_icon1);
+            itemView.setOnClickListener(v -> {
+                if (mListener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        mListener.onItemClick(position);
+                    }
+                }
+            });
         }
     }
 }

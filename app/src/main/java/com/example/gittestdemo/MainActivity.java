@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.gittestdemo.adapter.MainRecyclerViewAdapter;
 import com.example.gittestdemo.utils.MainItemDecoration;
@@ -28,12 +29,12 @@ public class MainActivity extends AppCompatActivity {
         // 初始化RecyclerView
         initView();
         initData();
-        WebViewUtils webViewUtils = new WebViewUtils(this, null, 0);
-        webViewUtils.initWebView(new ProgressBar(this,null,0),"https://www.baidu.com/",true);
-        addContentView(webViewUtils,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+//        WebViewUtils webViewUtils = new WebViewUtils(this, null, 0);
+//        webViewUtils.initWebView(new ProgressBar(this,null,0),"https://docs.qq.com/doc/DZElWZFhVVGZwQWl5?u=cc390812d3104e609ee3cffb8a79ff67",true);
+//        addContentView(webViewUtils,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 //        postsRecyclerView = findViewById(R.id.postsRecyclerView);
 //        postsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+//
 //        // 加载数据
 //        List<Post> postList = new ArrayList<>();
 //        postList.add(new Post("User1", "Hello, this is my first post!"));
@@ -51,12 +52,17 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.addItemDecoration(new MainItemDecoration());
         mRecyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(position -> {
+            Toast.makeText(this, "点击了: " + operations.get(position), Toast.LENGTH_SHORT).show();
+        });
     }
 
     private void initListData() {
         operations.add("文档");
         operations.add("kotlin");
         operations.add("影视");
+        operations.add("动画");
+        operations.add("粒子");
     }
 
     private void initView() {
