@@ -4,23 +4,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.gittestdemo.adapter.MainRecyclerViewAdapter;
+import com.example.gittestdemo.files.FileMainActivity;
 import com.example.gittestdemo.utils.MainItemDecoration;
-import com.example.gittestdemo.utils.WebViewUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 主界面
+ */
 public class MainActivity extends AppCompatActivity {
     private RecyclerView postsRecyclerView;
     private PostAdapter postAdapter;
-    private RecyclerView mRecyclerView;
-    private List<String> operations = new ArrayList<>();
+    private RecyclerView mRecyclerView; //首页条目
+    private List<Constant> operations = new ArrayList<>(); //首页功能集合
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         // 初始化RecyclerView
         initView();
         initData();
+
 //        WebViewUtils webViewUtils = new WebViewUtils(this, null, 0);
 //        webViewUtils.initWebView(new ProgressBar(this,null,0),"https://docs.qq.com/doc/DZElWZFhVVGZwQWl5?u=cc390812d3104e609ee3cffb8a79ff67",true);
 //        addContentView(webViewUtils,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -47,23 +50,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
+        //初始化首页功能集合
         initListData();
+        //初始化首页列表适配器
         MainRecyclerViewAdapter adapter = new MainRecyclerViewAdapter(operations);
+        //纵向展示
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //添加首页列表底部边距
         mRecyclerView.addItemDecoration(new MainItemDecoration());
         mRecyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(position -> {
-            Toast.makeText(this, "点击了: " + operations.get(position), Toast.LENGTH_SHORT).show();
+        //首页列表条目点击
+        adapter.setOnItemClickListener((type,position) -> {
+            Toast.makeText(this, "点击了: " + type, Toast.LENGTH_SHORT).show();
+            jumpToActivity(type,position);
         });
     }
 
     private void initListData() {
-        operations.add("文档");
-        operations.add("kotlin");
-        operations.add("影视");
-        operations.add("动画");
-        operations.add("粒子");
+        operations.add(Constant.document);
+        operations.add(Constant.movie);
+        operations.add(Constant.kotlin);
+        operations.add(Constant.animation);
+        operations.add(Constant.particle);
     }
+
+
+    /**
+     * 通过枚举类型跳转到不同Activity
+     * @param type
+     * @param pos
+     */
+   private void jumpToActivity(Constant type,int pos){
+        switch (type){
+            case document:
+                startActivity(new Intent(this, FileMainActivity.class));
+                break;
+        }
+   }
 
     private void initView() {
         mRecyclerView = findViewById(R.id.recyclerView);

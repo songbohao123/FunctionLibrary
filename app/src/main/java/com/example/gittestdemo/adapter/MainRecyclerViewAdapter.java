@@ -10,16 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gittestdemo.Constant;
 import com.example.gittestdemo.R;
 
 import java.util.List;
 
 public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder> {
-    private final List<String> titles;
-
-
+    private final List<Constant> titles;
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(Constant type,int position);
     }
 
     private static OnItemClickListener mListener;
@@ -30,7 +29,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     }
 
 
-    public MainRecyclerViewAdapter(List<String> titles) {
+    public MainRecyclerViewAdapter(List<Constant> titles) {
         this.titles = titles;
     }
 
@@ -44,18 +43,17 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String title = titles.get(position);
-        holder.title.setText(title);
-
+        Constant type  = titles.get(position);
+        holder.title.setText(type.mName);
         // 根据标题设置对应的图标
-        switch (title) {
-            case "文档":
+        switch (type) {
+            case document:
                 holder.icon.setImageResource(R.mipmap.word);
                 break;
-            case "kotlin":
+            case kotlin:
                 holder.icon.setImageResource(R.mipmap.kotlin);
                 break;
-            case "影视":
+            case movie:
                 holder.icon.setImageResource(R.mipmap.televison);
                 break;
             default:
@@ -70,7 +68,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         return titles.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+     class ViewHolder extends RecyclerView.ViewHolder {
         TextView title;
         ImageView icon;
 
@@ -82,7 +80,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
                 if (mListener != null) {
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
-                        mListener.onItemClick(position);
+                        mListener.onItemClick(titles.get(position),position);
                     }
                 }
             });
