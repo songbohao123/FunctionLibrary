@@ -5,9 +5,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.gittestdemo.adapter.MainRecyclerViewAdapter;
 import com.example.gittestdemo.utils.MainItemDecoration;
+import com.example.gittestdemo.utils.WebViewUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         // 初始化RecyclerView
         initView();
         initData();
+        WebViewUtils webViewUtils = new WebViewUtils(this, null, 0);
+        webViewUtils.initWebView(new ProgressBar(this,null,0),"https://www.baidu.com/",true);
+        addContentView(webViewUtils,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 //        postsRecyclerView = findViewById(R.id.postsRecyclerView);
 //        postsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
