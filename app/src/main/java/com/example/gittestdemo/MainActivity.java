@@ -54,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initListData() {
-        operations.add("功能1");
-        operations.add("功能2");
-        operations.add("功能3");
+        operations.add("文档");
+        operations.add("kotlin");
+        operations.add("影视");
     }
 
     private void initView() {
