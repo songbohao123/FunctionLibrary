@@ -9,9 +9,9 @@ import android.os.Bundle;
 
 import com.example.gittestdemo.adapter.MainRecyclerViewAdapter;
 import com.example.gittestdemo.adapter.PostAdapter;
-import com.example.gittestdemo.files.FileMainActivity;
+import com.example.gittestdemo.constant.HomeConstant;
+import com.example.gittestdemo.ui.activity.FileMainActivity;
 import com.example.gittestdemo.utils.MainItemDecoration;
-import com.example.gittestdemo.video.VideoMainActivity;
 import com.example.gittestdemo.video.VideoMp4Activity;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView postsRecyclerView;
     private PostAdapter postAdapter;
     private RecyclerView mRecyclerView; //首页条目
-    private List<Constant> operations = new ArrayList<>(); //首页功能集合
+    private List<HomeConstant> operations = new ArrayList<>(); //首页功能集合
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,21 +34,6 @@ public class MainActivity extends AppCompatActivity {
         initView();
         initData();
 
-//        WebViewUtils webViewUtils = new WebViewUtils(this, null, 0);
-//        webViewUtils.initWebView(new ProgressBar(this,null,0),"https://docs.qq.com/doc/DZElWZFhVVGZwQWl5?u=cc390812d3104e609ee3cffb8a79ff67",true);
-//        addContentView(webViewUtils,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-//        postsRecyclerView = findViewById(R.id.postsRecyclerView);
-//        postsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-//
-//        // 加载数据
-//        List<Post> postList = new ArrayList<>();
-//        postList.add(new Post("User1", "Hello, this is my first post!"));
-//        postList.add(new Post("User2", "Having a great day!"));
-//        postList.add(new Post("User3", "Just finished my project."));
-//
-//        // 设置Adapter
-//        postAdapter = new PostAdapter(postList);
-//        postsRecyclerView.setAdapter(postAdapter);
     }
 
     private void initData() {
@@ -68,27 +53,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initListData() {
-        operations.add(Constant.document);
-        operations.add(Constant.movie);
-        operations.add(Constant.kotlin);
-        operations.add(Constant.animation);
-        operations.add(Constant.particle);
+        operations.add(HomeConstant.document);
+        operations.add(HomeConstant.movie);
+        operations.add(HomeConstant.kotlin);
+        operations.add(HomeConstant.animation);
+        operations.add(HomeConstant.particle);
     }
 
 
     /**
      * 通过枚举类型跳转到不同Activity
-     *
      * @param type
      * @param pos
      */
-    private void jumpToActivity(Constant type, int pos) {
-        switch (type) {
+   private void jumpToActivity(HomeConstant type, int pos){
+        switch (type){
             case document:
                 startActivity(new Intent(this, FileMainActivity.class));
                 break;
             case movie:
-                startActivity(new Intent(this, VideoMainActivity.class));
+                startActivity(new Intent(this, VideoMp4Activity.class));
                 break;
         }
     }

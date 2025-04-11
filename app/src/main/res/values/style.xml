@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--普通文本样式-->
     <style name="OrdinaryTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">30sp</item>
         <item name="android:color">@android:color/black</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!--标题样式-->
+    <style name="Title_Style" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">30sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@android:color/darker_gray</item>
+
     </style>
 </resources>

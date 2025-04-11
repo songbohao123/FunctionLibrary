@@ -1,15 +1,20 @@
 pluginManagement {
     repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
+        maven { url 'https://maven.aliyun.com/repository/public' } // JCenter
+        maven { url 'https://maven.aliyun.com/repository/google' } // Google
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' } // Gradle 插件
+        google()        // 必须
+        mavenCentral()  // 必须
     }
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
-        mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/public' } // JCenter
+        maven { url 'https://maven.aliyun.com/repository/google' } // Google
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' } // Gradle 插件
+        google()        // 必须
+        mavenCentral()  // 必须
     }
 }
 

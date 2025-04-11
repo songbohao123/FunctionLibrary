@@ -3,22 +3,21 @@ package com.example.gittestdemo.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gittestdemo.Constant;
 import com.example.gittestdemo.R;
+import com.example.gittestdemo.constant.HomeConstant;
 
 import java.util.List;
 
 public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder> {
-    private final List<Constant> titles;
+    private final List<HomeConstant> titles;
     public interface OnItemClickListener {
-        void onItemClick(Constant type,int position);
+        void onItemClick(HomeConstant type, int position);
     }
 
     private static OnItemClickListener mListener;
@@ -29,7 +28,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     }
 
 
-    public MainRecyclerViewAdapter(List<Constant> titles) {
+    public MainRecyclerViewAdapter(List<HomeConstant> titles) {
         this.titles = titles;
     }
 
@@ -43,7 +42,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Constant type  = titles.get(position);
+        HomeConstant type  = titles.get(position);
         holder.title.setText(type.mName);
         // 根据标题设置对应的图标
         switch (type) {
