@@ -6,11 +6,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.example.gittestdemo.adapter.MainRecyclerViewAdapter;
+import com.example.gittestdemo.adapter.PostAdapter;
 import com.example.gittestdemo.files.FileMainActivity;
 import com.example.gittestdemo.utils.MainItemDecoration;
+import com.example.gittestdemo.video.VideoMainActivity;
+import com.example.gittestdemo.video.VideoMp4Activity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,9 +62,8 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.addItemDecoration(new MainItemDecoration());
         mRecyclerView.setAdapter(adapter);
         //首页列表条目点击
-        adapter.setOnItemClickListener((type,position) -> {
-            Toast.makeText(this, "点击了: " + type, Toast.LENGTH_SHORT).show();
-            jumpToActivity(type,position);
+        adapter.setOnItemClickListener((type, position) -> {
+            jumpToActivity(type, position);
         });
     }
 
@@ -77,16 +78,20 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * 通过枚举类型跳转到不同Activity
+     *
      * @param type
      * @param pos
      */
-   private void jumpToActivity(Constant type,int pos){
-        switch (type){
+    private void jumpToActivity(Constant type, int pos) {
+        switch (type) {
             case document:
                 startActivity(new Intent(this, FileMainActivity.class));
                 break;
+            case movie:
+                startActivity(new Intent(this, VideoMainActivity.class));
+                break;
         }
-   }
+    }
 
     private void initView() {
         mRecyclerView = findViewById(R.id.recyclerView);

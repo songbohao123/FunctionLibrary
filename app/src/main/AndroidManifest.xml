@@ -28,6 +28,8 @@
         <activity
             android:name=".LoginActivity"/>
         <activity android:name=".files.FileMainActivity"/>
+        <activity android:name=".video.VideoMp4Activity"/>
+        <activity android:name=".video.VideoMainActivity"/>
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
