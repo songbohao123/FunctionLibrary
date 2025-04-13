@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.gittestdemo.R;
 import com.example.gittestdemo.adapter.CommonAdapter;
+import com.example.gittestdemo.constant.FileConstant;
 import com.example.gittestdemo.databinding.ActivityMainFileLayoutBinding;
+import com.example.gittestdemo.model.FileModel;
 import com.tencent.smtt.sdk.QbSdk;
 import com.tencent.tbs.reader.ITbsReader;
 import com.tencent.tbs.reader.ITbsReaderCallback;
@@ -53,11 +55,11 @@ public class FileMainActivity extends AppCompatActivity {
         mBinding.documentRecycleView.setAdapter(adapter);
         mBinding.documentRecycleView.setLayoutManager(new LinearLayoutManager(this));
         mBinding.documentRecycleView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
-        adapter.setData(initList());
+        adapter.setData(initFileList());
     }
 
-    private List<String> initList() {
-        return List.of("ADB的一些操作","文档二","文档三");
+    private List<FileModel> initFileList() {
+        return FileConstant.initFileList();
     }
 
 

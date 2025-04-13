@@ -5,6 +5,8 @@ pluginManagement {
         maven { url 'https://maven.aliyun.com/repository/gradle-plugin' } // Gradle 插件
         google()        // 必须
         mavenCentral()  // 必须
+        gradlePluginPortal()  // 必须添加
+
     }
 }
 dependencyResolutionManagement {
