@@ -26,9 +26,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:targetApi="31">
-        <activity
-            android:name=".files.FilePreViewActivity"
-            android:exported="false" />
+        <activity android:name=".files.FilePreViewActivity" android:exported="false" />
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.FileMainActivity" />
         <activity android:name=".files.FileMainActivity" />
